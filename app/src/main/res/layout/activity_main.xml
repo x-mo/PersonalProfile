@@ -64,10 +64,10 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:layout_weight="1"
-                        android:gravity="center"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
                         android:orientation="vertical">
 
                         <TextView
@@ -82,10 +82,10 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_weight="1"
-                        android:gravity="center"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
                         android:orientation="vertical">
 
                         <TextView
@@ -100,10 +100,10 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_weight="1"
-                        android:gravity="center"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
                         android:orientation="vertical">
 
                         <TextView
@@ -119,11 +119,18 @@
 
                 </LinearLayout>
             </LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:descendantFocusability="blocksDescendants">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv"
+                android:nestedScrollingEnabled="false"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="match_parent"
+                android:layout_margin="4dp" />
+            </RelativeLayout>
         </LinearLayout>
     </com.emilsjolander.components.StickyScrollViewItems.StickyScrollView>
 </LinearLayout>

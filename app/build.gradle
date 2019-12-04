@@ -27,9 +27,16 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 
+    //Sticky scrollview to stick user info while scrolling
     implementation 'se.emilsjolander:StickyScrollViewItems:1.1.0'
+    //Circular imageview for user profile round image
     implementation 'de.hdodenhof:circleimageview:3.0.1'
+
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.cardview:cardview:1.0.0'
+
+    //Glide for fetching images from the web
+    implementation 'com.github.bumptech.glide:glide:4.10.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
 
 }
