@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -79,8 +80,6 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onResponse(JSONObject response) {
-//                        textView.setText("Response: " + response.toString());
-//                        Toast.makeText(MainActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
                         try {
                             JSONArray imagesArray = response.getJSONArray("data");
                             JSONObject imageObject;
@@ -99,12 +98,11 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // TODO: Handle error
+                        Log.e("VolleyError", error.toString());
 
                     }
                 });
 
-// Access the RequestQueue through your singleton class.
         VolleySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
 
     }
