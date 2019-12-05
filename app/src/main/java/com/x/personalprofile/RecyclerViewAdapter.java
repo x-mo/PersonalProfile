@@ -1,6 +1,7 @@
 package com.x.personalprofile;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +41,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Clicked #" + position, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "Clicked #" + position, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, FullscreenActivity.class);
+                intent.putExtra("url", imagePaths.get(position));
+                context.startActivity(intent);
+
             }
         });
     }
