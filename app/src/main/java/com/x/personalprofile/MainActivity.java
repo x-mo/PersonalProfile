@@ -2,10 +2,18 @@ package com.x.personalprofile;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -27,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
 //        recyclerView.setHasFixedSize(false);
 //        recyclerView.setNestedScrollingEnabled(false);
-        fetchImages();
+        fetchUserImages();
 
         adapter = new RecyclerViewAdapter(this, imagePaths);
         recyclerView.setAdapter(adapter);
@@ -61,4 +69,44 @@ public class MainActivity extends AppCompatActivity {
         imagePaths.add("http://i0sa.com/food/images/food/7.jpg");
         imagePaths.add("http://i0sa.com/food/images/food/7.jpg");
     }
+
+    private void fetchUserImages() {
+
+        String url = "http://i0sa.com/bit/task/home";
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+//                        textView.setText("Response: " + response.toString());
+//                        Toast.makeText(MainActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
+                        try {
+                            JSONArray imagesArray = response.getJSONArray("data");
+                            JSONObject imageObject;
+                            for (int i = 0; i < imagesArray.length(); i++) {
+                                imageObject = (JSONObject) imagesArray.get(i);
+                                imagePaths.add(imageObject.getString("image"));
+                            }
+
+                            adapter.notifyDataSetChanged();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // TODO: Handle error
+
+                    }
+                });
+
+// Access the RequestQueue through your singleton class.
+        VolleySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
+
+    }
+
 }
