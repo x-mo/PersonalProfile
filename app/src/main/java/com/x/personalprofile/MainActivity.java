@@ -48,19 +48,14 @@ public class MainActivity extends AppCompatActivity {
         postsTV = findViewById(R.id.tv_posts_count);
         followersTV = findViewById(R.id.tv_followers_count);
         followingTV = findViewById(R.id.tv_following_count);
-
         profileIV = findViewById(R.id.profile_image);
-
         recyclerView = findViewById(R.id.rv);
-
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
-//        recyclerView.setHasFixedSize(false);
-//        recyclerView.setNestedScrollingEnabled(false);
-        fetchUserInfo();
-        fetchUserImages();
-
         adapter = new RecyclerViewAdapter(this, imagePaths);
         recyclerView.setAdapter(adapter);
+
+        fetchUserInfo();
+        fetchUserImages();
 
     }
 
